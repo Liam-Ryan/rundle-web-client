@@ -1,0 +1,53 @@
+<!--
+/*
+* Copyright (c) 2018 Liam Ryan
+*
+* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+-->
+<div class="container">
+  <form [formGroup]="createPostForm" (ngSubmit)="submitPost()" novalidate>
+    <div *ngIf="validMessage != ''">
+      <h3 class="has-info">{{validMessage}}</h3>
+    </div>
+    <div class="form-group">
+      <label for="create-post.title">Post Title</label>
+      <input id="create-post.title" type="text" class="form-control" formControlName="title" required autofocus/>
+    </div>
+    <div class="form-group">
+      <label for="create-post.description">Description</label>
+      <textarea id="create-post.description" type="text" class="form-control" formControlName="description"
+                required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="create-post.content">Content</label>
+      <textarea id="create-post.content" type="text" class="form-control" formControlName="content" required></textarea>
+    </div>
+    <div class="form-group">
+      <label for="create-post.category">Category</label>
+      <select id="create-post.category" class="form-control" formControlName="category">
+        <option value="">Please select a category</option>
+        <option *ngFor="let category of categories"
+                [value]="category">
+          {{category}}
+        </option>
+      </select>
+    </div>
+    <label for="create-post.tags">Tags</label>
+    <div id=create-post.tags formArrayName="tags" class="form-group">
+      <span *ngFor="let tag of tags.controls;index as i">
+        <input type="text" class="form-control" [formControlName]="i"/>
+        <span *ngIf="tags.controls.length > 1" (click)="removeTag(i)">delete</span>
+      </span>
+    </div>
+    <a (click)="addTag()" cursor="pointer">+</a>
+    <div class="form-group">
+      <label for="create-post.hidden">Hide Post?</label>
+      <input id=create-post.hidden type="checkbox" class="form-control" formControlName="hidden"/>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+</div>

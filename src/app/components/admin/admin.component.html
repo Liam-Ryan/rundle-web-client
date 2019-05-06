@@ -1,0 +1,41 @@
+<!--
+/*
+* Copyright (c) 2018 Liam Ryan
+*
+* This Source Code Form is subject to the terms of the Mozilla Public
+* License, v. 2.0. If a copy of the MPL was not distributed with this
+* file, You can obtain one at http://mozilla.org/MPL/2.0/.
+*/
+-->
+<div class="container">
+  <a [routerLink]="['/post/create']">Create New</a>
+  <table class="table table-bordered table-inverse">
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Category</th>
+      <th>Tags</th>
+      <th>Last Updated</th>
+    </tr>
+    <tr *ngFor="let post of posts">
+      <td>
+        <a [routerLink]="['/post/view', post.id]">{{post.title}}</a>
+      </td>
+      <td>
+        {{post.description}}
+      </td>
+      <td>
+        {{post.category}}
+      </td>
+      <td>
+        <span *ngFor="let tag of post.tags; index as i">{{tag}}<span *ngIf="i + 1 < post.tags.length">, </span></span>
+      </td>
+      <td>
+        {{post.lastEditedDate}}
+      </td>
+      <td>
+        <a [routerLink]="" (click)="deletePost(post.id)">DELETE</a>
+      </td>
+    </tr>
+  </table>
+</div>
