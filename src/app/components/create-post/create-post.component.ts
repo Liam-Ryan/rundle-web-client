@@ -49,10 +49,6 @@ export class CreatePostComponent implements OnInit {
       return;
     }
     const post = this.createPostForm.value as Post;
-    console.log(`Post as created by form - \n${JSON.stringify(post)}`);
-    const today = new Date();
-    post.lastEditedDate = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-    console.log(`Post after modification in submitPost - \n${JSON.stringify(post)}`);
     this.postService.createPost(post)
       .pipe(first())
       .subscribe(
