@@ -14,6 +14,8 @@ const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
 };
 
+const baseUrl = 'https://rundle.eu-west-1.elasticbeanstalk.com';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -27,20 +29,20 @@ export class PostService {
   }
 
   getPosts() {
-    return this.http.get<Post[]>('/server/api/v1/posts', this.createTokenOptions());
+    return this.http.get<Post[]>(`${baseUrl}/api/v1/posts`, this.createTokenOptions());
   }
 
   getPost(id: number): Observable<Post> {
-    return this.http.get<Post>(`/server/api/v1/posts/${id}`, this.createTokenOptions());
+    return this.http.get<Post>(`${baseUrl}/api/v1/posts/${id}`, this.createTokenOptions());
   }
 
   createPost(post: Post) {
     const options = this.createTokenOptions();
     options.headers = options.headers.append('Content-Type', 'application/json');
-    return this.http.post('/server/api/v1/posts', JSON.stringify(post), options);
+    return this.http.post(`${baseUrl}/api/v1/posts`, JSON.stringify(post), options);
   }
 
   deletePost(id: number) {
-    return this.http.delete<Post>(`/server/api/v1/posts/${id}`, this.createTokenOptions());
+    return this.http.delete<Post>(`${baseUrl}/api/v1/posts/${id}`, this.createTokenOptions());
   }
 }

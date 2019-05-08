@@ -19,5 +19,5 @@ export class AppComponent {
     authService.handleAuthentication();
   }
 
-  title = 'rundle-ui';
+  title = 'rundle-web-client';
 }
