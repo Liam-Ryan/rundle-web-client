@@ -12,6 +12,7 @@ import { PostCategories } from '../../interfaces/post-category';
 import { IPost } from '../../interfaces/post.model';
 import { first } from 'rxjs/internal/operators/first';
 import { throwError } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-create-post',
@@ -27,7 +28,8 @@ export class CreatePostComponent implements OnInit {
   categories: string[];
   validMessage = '';
 
-  constructor(private postService: PostService) {
+  constructor(private postService: PostService,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -54,7 +56,7 @@ export class CreatePostComponent implements OnInit {
       .subscribe(
         data => {
           this.createPostForm.reset();
-          return true;
+          this.router.navigate(['/post/view']);
         },
         error => {
           return throwError(error);
