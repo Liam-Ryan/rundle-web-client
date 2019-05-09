@@ -8,6 +8,7 @@
 import { Injectable } from '@angular/core';
 import * as auth0 from 'auth0-js';
 import { Router } from '@angular/router';
+import { environment } from '../../environments/environment';
 
 @Injectable()
 export class AuthService {
@@ -17,7 +18,7 @@ export class AuthService {
     domain: 'rundle.eu.auth0.com',
     responseType: 'token id_token',
     audience: 'http://localhost:8080',
-    redirectUri: 'http://localhost:4200/callback',
+    redirectUri: `${environment.clientBaseUrl}/callback`,
     scope: 'openid view:registration view:registrations create:post'
   });
 

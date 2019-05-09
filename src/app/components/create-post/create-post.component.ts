@@ -9,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostCategories } from '../../interfaces/post-category';
-import { Post } from '../../interfaces/post';
+import { IPost } from '../../interfaces/post.model';
 import { first } from 'rxjs/internal/operators/first';
 import { throwError } from 'rxjs';
 
@@ -48,7 +48,7 @@ export class CreatePostComponent implements OnInit {
       this.validMessage = 'Please fill out the form before submitting!';
       return;
     }
-    const post = this.createPostForm.value as Post;
+    const post = this.createPostForm.value as IPost;
     this.postService.createPost(post)
       .pipe(first())
       .subscribe(

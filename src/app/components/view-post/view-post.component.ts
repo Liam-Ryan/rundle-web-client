@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { PostService } from '../../services/post.service';
-import { Post } from '../../interfaces/post';
+import { IPost } from '../../interfaces/post.model';
 import { first } from 'rxjs/internal/operators/first';
 import { ActivatedRoute } from '@angular/router';
 
@@ -11,7 +11,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ViewPostComponent implements OnInit {
 
-  public post: Post;
+  public post: IPost;
 
   constructor(private postService: PostService,
               private route: ActivatedRoute) {

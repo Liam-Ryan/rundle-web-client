@@ -9,7 +9,7 @@ import { first } from 'rxjs/operators';
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-import { Post } from '../../interfaces/post';
+import { IPost } from '../../interfaces/post.model';
 
 @Component({
   selector: 'app-admin',
@@ -18,7 +18,7 @@ import { Post } from '../../interfaces/post';
 })
 export class AdminComponent implements OnInit {
 
-  public posts: Post[];
+  public posts: IPost[];
 
   constructor(private postService: PostService) {
   }

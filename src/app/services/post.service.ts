@@ -7,14 +7,12 @@
  */
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Post } from '../interfaces/post';
+import { IPost } from '../interfaces/post.model';
 import { Observable } from 'rxjs';
+import { environment } from '../../environments/environment';
 
-const httpOptions = {
-  headers: new HttpHeaders({'Content-Type': 'application/json'})
-};
 
-const baseUrl = 'https://rundle.eu-west-1.elasticbeanstalk.com';
+const baseUrl = environment.serverBaseUrl;
 
 @Injectable({
   providedIn: 'root'
@@ -29,20 +27,20 @@ export class PostService {
   }
 
   getPosts() {
-    return this.http.get<Post[]>(`${baseUrl}/api/v1/posts`, this.createTokenOptions());
+    return this.http.get<IPost[]>(`${baseUrl}/api/v1/posts`, this.createTokenOptions());
   }
 
-  getPost(id: number): Observable<Post> {
-    return this.http.get<Post>(`${baseUrl}/api/v1/posts/${id}`, this.createTokenOptions());
+  getPost(id: number): Observable<IPost> {
+    return this.http.get<IPost>(`${baseUrl}/api/v1/posts/${id}`, this.createTokenOptions());
   }
 
-  createPost(post: Post) {
+  createPost(post: IPost) {
     const options = this.createTokenOptions();
     options.headers = options.headers.append('Content-Type', 'application/json');
     return this.http.post(`${baseUrl}/api/v1/posts`, JSON.stringify(post), options);
   }
 
   deletePost(id: number) {
-    return this.http.delete<Post>(`${baseUrl}/api/v1/posts/${id}`, this.createTokenOptions());
+    return this.http.delete<IPost>(`${baseUrl}/api/v1/posts/${id}`, this.createTokenOptions());
   }
 }

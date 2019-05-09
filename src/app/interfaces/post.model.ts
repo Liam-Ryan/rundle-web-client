@@ -7,7 +7,7 @@
  */
 import { PostCategories } from './post-category';
 
-export interface Post {
+export interface IPost {
   id: number;
   description: string;
   content: string;
