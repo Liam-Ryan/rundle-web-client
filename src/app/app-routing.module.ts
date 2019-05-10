@@ -17,12 +17,10 @@ const routes: Routes = [
   {
     path: 'post/view/:id',
     component: ViewPostComponent,
-    canActivate: [AuthGuardService]
   },
   {
     path: 'post/view',
     component: AdminComponent,
-    canActivate: [AuthGuardService]
   },
   {
     path: 'post/create',

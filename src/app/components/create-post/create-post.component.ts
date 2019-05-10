@@ -6,6 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import { Component, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
 import { PostService } from '../../services/post.service';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
 import { PostCategories } from '../../interfaces/post-category';
@@ -29,7 +30,8 @@ export class CreatePostComponent implements OnInit {
   validMessage = '';
 
   constructor(private postService: PostService,
-              private router: Router) {
+              private router: Router,
+              private location: Location) {
   }
 
   ngOnInit() {
@@ -62,6 +64,10 @@ export class CreatePostComponent implements OnInit {
           return throwError(error);
         }
       );
+  }
+
+  cancel() {
+    this.location.back();
   }
 
   addTag() {

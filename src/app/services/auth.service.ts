@@ -19,7 +19,7 @@ export class AuthService {
     responseType: 'token id_token',
     audience: 'http://localhost:8080',
     redirectUri: `${environment.clientBaseUrl}/callback`,
-    scope: 'openid view:registration view:registrations create:post'
+    scope: 'openid view:hidden-post delete:post create:post'
   });
 
   constructor(public router: Router) {
