@@ -69,7 +69,14 @@ describe('CreatePostComponent', () => {
     component.createPostForm.patchValue({description: 'description', title: 'title', content: 'content'});
     component.submitPost();
 
-    expect(mockPostService.createPost).toHaveBeenCalledWith({ title: 'title', description: 'description', content: 'content', category: '', tags: [  ], hidden: '' });
+    expect(mockPostService.createPost).toHaveBeenCalledWith({
+      title: 'title',
+      description: 'description',
+      content: 'content',
+      category: '',
+      tags: [],
+      hidden: ''
+    });
   });
 
   it('removing a tag after adding it should result in 1 tag', () => {
