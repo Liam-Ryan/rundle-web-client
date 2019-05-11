@@ -26,7 +26,7 @@ export class CallbackComponent implements OnInit, AfterViewChecked {
     if (url) {
       this.router.navigateByUrl(url);
     } else {
-      this.router.navigate(['/post/view']);
+      this.router.navigate(['post/view']);
     }
   }
 }

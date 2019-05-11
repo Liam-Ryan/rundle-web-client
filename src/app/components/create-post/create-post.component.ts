@@ -53,12 +53,13 @@ export class CreatePostComponent implements OnInit {
       return;
     }
     const post = this.createPostForm.value as IPost;
+    post.tags = post.tags.filter(tag => tag.trim());
     this.postService.createPost(post)
       .pipe(first())
       .subscribe(
         data => {
           this.createPostForm.reset();
-          this.router.navigate(['/post/view']);
+          this.router.navigate(['post/view']);
         },
         error => {
           return throwError(error);
@@ -75,7 +76,9 @@ export class CreatePostComponent implements OnInit {
   }
 
   removeTag(tagIndex: number) {
-    this.tags.removeAt(tagIndex);
+    if (this.tags.length > 1) {
+      this.tags.removeAt(tagIndex);
+    }
   }
 
 }

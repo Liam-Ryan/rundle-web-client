@@ -18,14 +18,14 @@ export class ViewPostComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getBike(this.route.snapshot.params.id);
+    this.getPost(this.route.snapshot.params.id);
   }
 
-  getBike(id: number) {
+  getPost(id: number) {
     this.postService.getPost(id)
       .pipe(first())
       .subscribe(
-        bike => this.post = bike,
+        post => this.post = post,
         error => console.error(error),
         () => console.log('Completed')
       );

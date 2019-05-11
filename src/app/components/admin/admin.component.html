@@ -19,7 +19,7 @@
     </tr>
     <tr *ngFor="let post of posts">
       <td>
-        <a [routerLink]="['/post/view', post.id]">{{post.title}}</a>
+        <a routerLink="/post/view/{{post.id}}">{{post.title}}</a>
       </td>
       <td>
         {{post.description}}
@@ -34,7 +34,7 @@
         {{post.lastEditedDate}}
       </td>
       <td>
-        <a [routerLink]="" (click)="deletePost(post.id)">DELETE</a>
+        <a href="javascript:void(0)" (click)="deletePost(post.id)">DELETE</a>
       </td>
     </tr>
   </table>
