@@ -1,0 +1,40 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>Day {{daysUnderConstruction}} of Construction</mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <p>
+      Hi there and thanks for checking out the site. As you can see it's not very impressive right now. The number of days under
+      construction is a live timer from when I started this project. It consists of this website, coded in
+      Angular with Material Design and hosted via Amazon S3 and cloudfront, and a Spring Boot backend which is
+      hosted on an Elasticbeanstalk instance.
+    </p>
+    <p>
+      I decided that rather than using something like wordpress the best way to showcase my skills would be to create
+      and deploy an end to end open-source webapp. This app will allow me to create and manage blog posts, initially
+      by writing html but eventually I hope to add a basic text editor. The source code is visible in my github in the
+      link on the top-right of the page. <a href="https://github.com/Liam-Ryan/rundle">rundle</a> is the back-end and you're currently viewing the
+      <a href="https://github.com/Liam-Ryan/rundle-web-client">rundle-web-client</a>. Once the client is complete I'll
+      also create an Ionic ios/android application to hook into the rundle api.
+    </p>
+    <p>
+    <i><b>So what have I been doing for {{daysUnderConstruction}} days?</b></i>
+    </p>
+    <p>
+      The bulk of the work so far has been infrastructure setup and related activities such as registering domain,
+      generating valid certificates and setting up the build and deployment workflow. Functionally the posts backend
+      exists and only allows me to create posts or view hidden posts based on auth0 authentication.
+
+      The front-end has zero styling with the exception of the navbar and I need to switch to lazy loading components but
+      I've already created some useful components and the unit testing is pretty good for functional components
+    </p>
+    <p>
+      If you wish you can view the current test data, note you can currently navigate to create a post but after you
+      authenticate with auth0 you will not be able to submit a post (unless I've missed a huge security issue!)
+    </p>
+    <p>
+      If you would like to reach out please do so via <a href="https://www.linkedin.com/in/liryan/">LinkedIn</a> or
+      <a href="https://github.com/Liam-Ryan">Github</a> and thanks again for checking out my site!
+    </p>
+  </mat-card-content>
+</mat-card>

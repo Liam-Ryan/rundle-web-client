@@ -1,0 +1,8 @@
+@import '../../../scss/variables';
+
+a.mat-icon-button {
+  @media (max-width: $break-small) {
+    font-size: $display3-size-sm;
+  }
+}
+

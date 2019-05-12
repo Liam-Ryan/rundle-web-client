@@ -19,6 +19,13 @@ import { ViewPostComponent } from './components/view-post/view-post.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { AuthService } from './services/auth.service';
 import { AuthGuardService } from './services/auth.guard.service';
+import { AppNavbarComponent } from './components/app-navbar/app-navbar.component';
+import { HomeComponent } from './components/home/home.component';
+import { MaterialModule } from './shared/material.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import { RundleButtonComponent } from './components/rundle-button/rundle-button.component';
+import { RundleIconButtonFaComponent } from './components/rundle-icon-button-fa/rundle-icon-button-fa.component';
+import { MatCardModule } from '@angular/material';
 
 @NgModule({
   declarations: [
@@ -26,13 +33,20 @@ import { AuthGuardService } from './services/auth.guard.service';
     AdminComponent,
     CreatePostComponent,
     ViewPostComponent,
-    CallbackComponent
+    CallbackComponent,
+    AppNavbarComponent,
+    HomeComponent,
+    RundleButtonComponent,
+    RundleIconButtonFaComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ReactiveFormsModule
+    MaterialModule,
+    FlexLayoutModule,
+    ReactiveFormsModule,
+    MatCardModule
   ],
   providers: [
     PostService,

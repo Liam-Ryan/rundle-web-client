@@ -1,0 +1,21 @@
+@import '../../../scss/variables';
+
+mat-toolbar div a {
+  &.mat-button {
+    font-size: $display3-size;
+    font-weight: $display3-weight;
+
+    @media (max-width: $break-small) {
+      font-size: $display3-size-sm;
+    }
+  }
+
+  &.mat-icon-button {
+    @media (max-width: $break-small) {
+      font-size: $display3-size-sm;
+    }
+  }
+}
+
+
+

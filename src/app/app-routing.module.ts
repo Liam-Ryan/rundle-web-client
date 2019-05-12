@@ -12,6 +12,7 @@ import { CreatePostComponent } from './components/create-post/create-post.compon
 import { ViewPostComponent } from './components/view-post/view-post.component';
 import { CallbackComponent } from './components/callback/callback.component';
 import { AuthGuardService } from './services/auth.guard.service';
+import { HomeComponent } from './components/home/home.component';
 
 const routes: Routes = [
   {
@@ -30,6 +31,10 @@ const routes: Routes = [
   {
     path: 'callback',
     component: CallbackComponent
+  },
+  {
+    path: '',
+    component: HomeComponent
   }
 ];
 

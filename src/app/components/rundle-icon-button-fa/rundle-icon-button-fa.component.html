@@ -1,0 +1,11 @@
+<a fxFlex mat-button
+   [attr.routerLink]="routerLink ? routerLink : null"
+   [attr.href]="link ? link : null"
+   color="accent"
+   mat-ripple
+   [attr.aria-label]="displayValue"
+   [matRippleRadius]="rippleRadius"
+   [matRippleColor]="rippleColor"
+   [matRippleCentered]="rippleCentered">
+   <i class="{{faIconClass}} fa-3x"></i>
+</a>
