@@ -18,6 +18,4 @@ export class AppComponent {
   constructor(private authService: AuthService) {
     authService.handleAuthentication();
   }
-
-  title = 'rundle-web-client';
 }

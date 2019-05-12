@@ -7,10 +7,6 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppNavbarComponent implements OnInit {
 
-  rippleColor = '#FFFFFF';
-  rippleRadius = 40;
-  rippleCentered = true;
-
   constructor() {
   }
 
