@@ -1,0 +1,20 @@
+@import '~@angular/material/theming';
+
+$app-primary: mat-palette($mat-deep-purple);
+$app-accent:  mat-palette($mat-amber,A200, A100, A400);
+$app-warn:    mat-palette($mat-red);
+
+$primary: mat-color($app-primary);
+$accent: mat-color($app-accent);
+$warn: mat-color($app-warn);
+
+/* breakpoints */
+$break-small: 780px;
+
+/* general sizings */
+$display2-size: 3em;
+$display3-size: 1.2em;
+$display3-weight: 400;
+
+$display2-size-sm: 1.5em;
+$display3-size-sm: .6em;

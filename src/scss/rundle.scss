@@ -5,3 +5,12 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
+@import "~@angular/material/theming";
+@include mat-core();
+
+$rundle-app-primary: mat-palette($mat-deep-purple);
+$rundle-app-accent: mat-palette($mat-amber, A200, A100, A400);
+
+$rundle-app-theme: mat-light-theme($rundle-app-primary, $rundle-app-accent);
+
+@include angular-material-theme($rundle-app-theme);

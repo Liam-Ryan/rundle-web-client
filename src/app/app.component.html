@@ -1,7 +1,10 @@
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
+
+<app-navbar class="mat-elevation-z6"></app-navbar>
+<div fxLayout="row" class="main-content">
+  <div fxFlex.gt-sm="15"></div>
+  <div fxFlex>
+    <router-outlet></router-outlet>
+  </div>
+  <div fxFlex.gt-sm="15"></div>
 </div>
 
-<router-outlet></router-outlet>

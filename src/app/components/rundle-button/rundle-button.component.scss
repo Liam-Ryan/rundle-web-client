@@ -1,0 +1,12 @@
+@import '../../../scss/variables';
+
+a.mat-button {
+
+  font-size: $display3-size;
+  font-weight: $display3-weight;
+
+  @media (max-width: $break-small) {
+    font-size: $display3-size-sm;
+  }
+}
+
