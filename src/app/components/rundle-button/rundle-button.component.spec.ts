@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RundleButtonComponent } from './rundle-button.component';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('RundleButtonComponent', () => {
   let component: RundleButtonComponent;
@@ -8,9 +9,10 @@ describe('RundleButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ RundleButtonComponent ]
+      declarations: [RundleButtonComponent],
+      schemas: [NO_ERRORS_SCHEMA]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
