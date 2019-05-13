@@ -6,22 +6,17 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, CanActivate, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, CanActivate } from '@angular/router';
 import { AuthService } from './auth.service';
 
 @Injectable()
 export class AuthGuardService implements CanActivate {
 
-  constructor(private authService: AuthService,
-              private router: Router) {
+  constructor(private authService: AuthService) {
   }
 
   canActivate(route: ActivatedRouteSnapshot) {
-    if (this.authService.isAuthenticated()) {
-      return true;
-    }
-    localStorage.setItem('destination', this.router.url);
-    this.authService.login();
+    return this.authService.isAuthenticated();
   }
 
 }
