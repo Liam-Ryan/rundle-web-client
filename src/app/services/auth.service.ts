@@ -13,16 +13,18 @@ import { environment } from '../../environments/environment';
 @Injectable()
 export class AuthService {
 
-  auth0 = new auth0.WebAuth({
-    clientID: 'ZYcrG9LmYgSBJs2xhtWk4XY8yr6mJ4am',
-    domain: 'rundle.eu.auth0.com',
-    responseType: 'token id_token',
-    audience: 'http://localhost:8080',
-    redirectUri: `${environment.clientBaseUrl}/callback`,
-    scope: 'openid view:hidden-post delete:post create:post'
-  });
+  private tokenKeys = {
+    ACCESS: 'access_token',
+    ID: 'id_token',
+    EXPIRES: 'expires_at'
+  };
+
+  private defaultLoginRoute = '/post/view';
+
+  auth0;
 
   constructor(public router: Router) {
+    this.auth0 = new auth0.WebAuth(environment.auth0);
   }
 
   public login(): void {
@@ -31,39 +33,55 @@ export class AuthService {
 
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
+      const route = this.defaultLoginRoute;
+
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
         this.setSession(authResult);
-        this.router.navigate(['/post/view']);
+        this.router.navigate([route]);
       } else if (err) {
-        this.router.navigate(['/post/view']);
+        this.router.navigate([route]);
         console.log(err);
       }
     });
   }
 
   private setSession(authResult): void {
-    // Set the time that the access token will expire at
-    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
-    localStorage.setItem('access_token', authResult.accessToken);
-    localStorage.setItem('id_token', authResult.idToken);
-    localStorage.setItem('expires_at', expiresAt);
+    const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + Date.now());
+    localStorage.setItem(this.tokenKeys.ACCESS, authResult.accessToken);
+    localStorage.setItem(this.tokenKeys.ID, authResult.idToken);
+    localStorage.setItem(this.tokenKeys.EXPIRES, expiresAt);
+  }
+
+  public renewTokens(): void {
+    this.auth0.checkSession({}, (err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken) {
+        this.setSession(authResult);
+      } else if (err) {
+        alert(`Could not get a new token (${err.error}: ${err.errordescription})`);
+      }
+    });
+  }
+
+  public clearTokens(): void {
+    Object.values(this.tokenKeys).forEach(
+      (token) => localStorage.removeItem(token)
+    );
   }
 
   public logout(): void {
-    // Remove tokens and expiry time from localStorage
-    localStorage.removeItem('access_token');
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
+    localStorage.removeItem(this.tokenKeys.ACCESS);
+    localStorage.removeItem(this.tokenKeys.ID);
+    localStorage.removeItem(this.tokenKeys.EXPIRES);
     // Go back to the create-post route
-    this.router.navigate(['/']);
+    this.auth0.logout({
+      returnTo: `${environment.clientBaseUrl}`
+    });
   }
 
   public isAuthenticated(): boolean {
-    // Check whether the current time is past the
-    // access token's expiry time
-    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
-    return new Date().getTime() < expiresAt;
+    const expiresAt = JSON.parse(localStorage.getItem(this.tokenKeys.EXPIRES));
+    return Date.now() < expiresAt;
   }
 
 }
