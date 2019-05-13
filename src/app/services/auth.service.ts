@@ -28,14 +28,12 @@ export class AuthService {
   }
 
   public login(): void {
-    localStorage.setItem('page', this.router.url);
     this.auth0.authorize();
   }
 
   public handleAuthentication(): void {
     this.auth0.parseHash((err, authResult) => {
-      const route = localStorage.getItem('page') || this.defaultLoginRoute;
-      localStorage.removeItem('page');
+      const route = this.defaultLoginRoute;
 
       if (authResult && authResult.accessToken && authResult.idToken) {
         window.location.hash = '';
@@ -72,7 +70,6 @@ export class AuthService {
   }
 
   public logout(): void {
-    // Remove tokens and expiry time from localStorage
     localStorage.removeItem(this.tokenKeys.ACCESS);
     localStorage.removeItem(this.tokenKeys.ID);
     localStorage.removeItem(this.tokenKeys.EXPIRES);
@@ -83,8 +80,6 @@ export class AuthService {
   }
 
   public isAuthenticated(): boolean {
-    // Check whether the current time is past the
-    // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem(this.tokenKeys.EXPIRES));
     return Date.now() < expiresAt;
   }
