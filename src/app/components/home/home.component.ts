@@ -13,7 +13,8 @@ export class HomeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.daysUnderConstruction = Math.round((Date.now() - Date.parse('06 May 2019 11:00:00 GMT')) / this.msInDay);
+    // this.daysUnderConstruction = Math.round((Date.now() - Date.parse('06 May 2019 11:00:00 GMT')) / this.msInDay);
+    this.daysUnderConstruction = 9;
   }
 
 }
