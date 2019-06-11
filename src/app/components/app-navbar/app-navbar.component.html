@@ -4,8 +4,17 @@
     <app-rundle-button displayValue="Home" routerLink="/"></app-rundle-button>
   </div>
   <div fxFlex>
-    <app-rundle-button displayValue="Posts" routerLink="/post/view"></app-rundle-button>
+    <app-rundle-button displayValue="Manage Posts" routerLink="/post/view"></app-rundle-button>
   </div>
+  <mat-menu #blogMenu="matMenu">
+    <button mat-menu-item>Category 1</button>
+    <button mat-menu-item>Category 2</button>
+  </mat-menu>
+  <div fxFlex>
+    <app-rundle-button displayValue="Blog Posts" [matMenuTriggerFor]="blogMenu">
+    </app-rundle-button>
+  </div>
+
   <div fxFlex.gt-xs="60"></div>
 
   <!--  External links -->

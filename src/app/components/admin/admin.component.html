@@ -25,7 +25,7 @@
         {{post.description}}
       </td>
       <td>
-        {{post.category}}
+        {{post.category.name}}
       </td>
       <td>
         <span *ngFor="let tag of post.tags; index as i">{{tag}}<span *ngIf="i + 1 < post.tags.length">, </span></span>

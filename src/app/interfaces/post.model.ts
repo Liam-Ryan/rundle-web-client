@@ -5,7 +5,7 @@
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-import { PostCategories } from './post-category';
+import { ICategory } from './category.model';
 
 export interface IPost {
   id: number;
@@ -14,6 +14,6 @@ export interface IPost {
   lastEditedDate: string;
   tags: string[];
   title: string;
-  category: typeof PostCategories[number];
+  category: ICategory;
   isHidden: boolean;
 }

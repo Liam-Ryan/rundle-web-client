@@ -9,11 +9,13 @@ import { Component, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { PostService } from '../../services/post.service';
 import { FormArray, FormControl, FormGroup, Validators } from '@angular/forms';
-import { PostCategories } from '../../interfaces/post-category';
 import { IPost } from '../../interfaces/post.model';
 import { first } from 'rxjs/internal/operators/first';
 import { throwError } from 'rxjs';
 import { Router } from '@angular/router';
+import { CategoryService } from '../../services/category.service';
+import { ICategory } from '../../interfaces/category.model';
+import { take } from 'rxjs/operators';
 
 @Component({
   selector: 'app-create-post',
@@ -26,12 +28,13 @@ export class CreatePostComponent implements OnInit {
   }
 
   createPostForm: FormGroup;
-  categories: string[];
+  categories: ICategory[];
   validMessage = '';
 
   constructor(private postService: PostService,
               private router: Router,
-              private location: Location) {
+              private location: Location,
+              private categoryService: CategoryService) {
   }
 
   ngOnInit() {
@@ -39,11 +42,17 @@ export class CreatePostComponent implements OnInit {
       title: new FormControl('', Validators.required),
       description: new FormControl('', Validators.required),
       content: new FormControl('', Validators.required),
-      category: new FormControl(''),
+      category: new FormControl('', Validators.required),
       tags: new FormArray([new FormControl('')]),
       hidden: new FormControl('')
     });
-    this.categories = PostCategories;
+
+    this.categoryService.getCategories().pipe(
+      take(1)
+    ).subscribe(data => {
+      this.categories = data;
+      this.createPostForm.controls.category.setValue(this.categories[0], {onlySelf: true});
+    });
   }
 
   submitPost() {
