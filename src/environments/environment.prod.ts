@@ -2,6 +2,7 @@ export const environment = {
   name: 'prod',
   production: true,
   serverBaseUrl: 'https://rundle.eu-west-1.elasticbeanstalk.com',
+  apiEndpoint: '/api/v1/',
   clientBaseUrl: 'https://liam-ryan.com',
   get auth0() {
     const auth0 = {

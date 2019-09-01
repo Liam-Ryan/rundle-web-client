@@ -84,4 +84,6 @@ export class AuthService {
     return Date.now() < expiresAt;
   }
 
+  public createAuth
+
 }

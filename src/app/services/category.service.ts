@@ -6,42 +6,35 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { IPost } from '../interfaces/post.model';
+import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
 import { ICategory } from '../interfaces/category.model';
-
-
-const baseUrl = environment.serverBaseUrl;
 
 @Injectable({
   providedIn: 'root'
 })
+
+// @todo cache categories in behaviour subject, return observables to consumers
 export class CategoryService {
 
-  constructor(private http: HttpClient) {
-  }
+  private serviceEndpoint = 'category';
 
-  private createTokenOptions() {
-    return {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`)};
+  constructor(private api: ApiService) {
   }
 
   getCategories() {
-    return this.http.get<ICategory[]>(`${baseUrl}/api/v1/category`, this.createTokenOptions());
+    return this.api.get<ICategory[]>(this.serviceEndpoint);
   }
 
   getCategory(id: number): Observable<ICategory> {
-    return this.http.get<ICategory>(`${baseUrl}/api/v1/category/${id}`, this.createTokenOptions());
+    return this.api.get<ICategory>(this.serviceEndpoint, id);
   }
 
   createCategory(category: ICategory) {
-    const options = this.createTokenOptions();
-    options.headers = options.headers.append('Content-Type', 'application/json');
-    return this.http.post(`${baseUrl}/api/v1/category`, JSON.stringify(category), options);
+    return this.api.create<ICategory>(this.serviceEndpoint, category);
   }
 
   deleteCategory(id: number) {
-    return this.http.delete<ICategory>(`${baseUrl}/api/v1/category/${id}`, this.createTokenOptions());
+    return this.api.delete<ICategory>(this.serviceEndpoint, id);
   }
 }

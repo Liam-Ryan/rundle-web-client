@@ -6,6 +6,7 @@ export const environment = {
   name: 'dev',
   production: false,
   serverBaseUrl: 'http://localhost:5000',
+  apiEndpoint: '/api/v1/',
   clientBaseUrl: 'http://localhost:4200',
   get auth0() {
     const auth0 = {

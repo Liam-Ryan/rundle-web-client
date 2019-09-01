@@ -6,41 +6,34 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IPost } from '../interfaces/post.model';
 import { Observable } from 'rxjs';
-import { environment } from '../../environments/environment';
-
-
-const baseUrl = environment.serverBaseUrl;
+import { ApiService } from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
+// @todo cache posts in behaviour subject, return observables to consumers
 export class PostService {
 
-  constructor(private http: HttpClient) {
-  }
+  private serviceEndpoint = 'posts';
 
-  private createTokenOptions() {
-    return {headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`)};
+  constructor(private api: ApiService) {
   }
 
   getPosts() {
-    return this.http.get<IPost[]>(`${baseUrl}/api/v1/posts`, this.createTokenOptions());
+    return this.api.get<IPost[]>(this.serviceEndpoint);
   }
 
   getPost(id: number): Observable<IPost> {
-    return this.http.get<IPost>(`${baseUrl}/api/v1/posts/${id}`, this.createTokenOptions());
+    return this.api.get<IPost>(this.serviceEndpoint, id);
   }
 
   createPost(post: IPost) {
-    const options = this.createTokenOptions();
-    options.headers = options.headers.append('Content-Type', 'application/json');
-    return this.http.post(`${baseUrl}/api/v1/posts`, JSON.stringify(post), options);
+    return this.api.create<IPost>(this.serviceEndpoint, post);
   }
 
   deletePost(id: number) {
-    return this.http.delete<IPost>(`${baseUrl}/api/v1/posts/${id}`, this.createTokenOptions());
+    return this.api.delete<IPost>(this.serviceEndpoint, id);
   }
 }

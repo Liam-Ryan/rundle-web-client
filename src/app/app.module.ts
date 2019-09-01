@@ -20,6 +20,7 @@ import { RundleButtonComponent } from './components/rundle-button/rundle-button.
 import { RundleIconButtonFaComponent } from './components/rundle-icon-button-fa/rundle-icon-button-fa.component';
 import { MaterialModule } from './shared/material.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { httpInterceptorProviders } from './interceptors/interceptor-providers';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     PostService,
     AuthService,
-    AuthGuardService
+    AuthGuardService,
+    httpInterceptorProviders
   ],
   bootstrap: [AppComponent]
 })

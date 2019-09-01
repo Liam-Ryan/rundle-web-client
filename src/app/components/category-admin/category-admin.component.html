@@ -1,0 +1,6 @@
+<div *ngFor="let category of categories">
+  <div>{{category.name}}</div>
+  <div *ngFor="let post of category.posts">
+    {{post.title}}
+  </div>
+</div>

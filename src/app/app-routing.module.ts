@@ -11,12 +11,16 @@ import { AuthGuardService } from './services/auth.guard.service';
 
 const routes: Routes = [
   {
+    path: 'category/admin',
+    loadChildren: './components/category-admin/category-admin.module#CategoryAdminModule',
+  },
+  {
     path: 'post/view/:id',
     loadChildren: './components/view-post/view-post.module#ViewPostModule',
   },
   {
     path: 'post/view',
-    loadChildren: './components/admin/admin.module#AdminModule',
+    loadChildren: './components/post-admin/admin.module#AdminModule',
   },
   {
     path: 'post/create',
