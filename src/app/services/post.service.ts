@@ -29,7 +29,7 @@ export class PostService {
     return this.api.get<IPost>(this.serviceEndpoint, id);
   }
 
-  createPost(post: IPost) {
+  createOrModifyPost(post: IPost) {
     return this.api.create<IPost>(this.serviceEndpoint, post);
   }
 

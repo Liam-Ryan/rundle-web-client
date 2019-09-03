@@ -58,7 +58,8 @@ export class AuthService {
       if (authResult && authResult.accessToken && authResult.idToken) {
         this.setSession(authResult);
       } else if (err) {
-        alert(`Could not get a new token (${err.error}: ${err.errordescription})`);
+        console.error(err);
+        console.error(authResult);
       }
     });
   }
@@ -83,7 +84,5 @@ export class AuthService {
     const expiresAt = JSON.parse(localStorage.getItem(this.tokenKeys.EXPIRES));
     return Date.now() < expiresAt;
   }
-
-  public createAuth
 
 }

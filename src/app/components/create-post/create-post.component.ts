@@ -63,7 +63,7 @@ export class CreatePostComponent implements OnInit {
     }
     const post = this.createPostForm.value as IPost;
     post.tags = post.tags.filter(tag => tag.trim());
-    this.postService.createPost(post)
+    this.postService.createOrModifyPost(post)
       .pipe(first())
       .subscribe(
         data => {

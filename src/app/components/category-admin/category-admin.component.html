@@ -1,6 +1,10 @@
-<div *ngFor="let category of categories">
-  <div>{{category.name}}</div>
-  <div *ngFor="let post of category.posts">
-    {{post.title}}
+<button mat-fab color="accent" (click)="addCategory()"><mat-icon>add</mat-icon></button>
+<div cdkDropListGroup>
+  <div class="category-container" *ngFor="let category of categories">
+    <h2>{{category.name}}</h2>
+    <div cdkDropList [cdkDropListData]="category" (cdkDropListDropped)="drop($event)" style="min-height:60px;min-width:60px;">
+      <div *ngFor="let post of category.posts" cdkDrag>{{post.title}}</div>
+    </div>
   </div>
 </div>
+

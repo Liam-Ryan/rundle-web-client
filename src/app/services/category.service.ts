@@ -30,7 +30,7 @@ export class CategoryService {
     return this.api.get<ICategory>(this.serviceEndpoint, id);
   }
 
-  createCategory(category: ICategory) {
+  createOrModifyCategory(category: ICategory) {
     return this.api.create<ICategory>(this.serviceEndpoint, category);
   }
 
